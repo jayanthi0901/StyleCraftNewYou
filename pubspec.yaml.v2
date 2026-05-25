@@ -1,0 +1,41 @@
+name: stylesnap
+description: AI-powered hair style preview app with camera overlay.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # ── State ──────────────────────────────────────
+  provider: ^6.1.2
+
+  # ── Camera & permissions ───────────────────────
+  camera: ^0.10.5+9
+  permission_handler: ^11.3.1
+
+  # ── Image compositing (overlay on photo) ────────
+  image: ^4.2.0
+
+  # ── Face tracking ────────────────────────────────
+  google_mlkit_face_detection: ^0.11.0
+
+  # ── Local storage ──────────────────────────────
+  path_provider: ^2.1.3    # documents / cache dir
+  # No cloud in Phase-1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/styles.json          # style registry
+    - assets/overlays/            # hairstyle PNGs (transparent bg)
+    - assets/thumbnails/          # local thumbnail images

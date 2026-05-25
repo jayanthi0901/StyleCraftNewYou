@@ -1,0 +1,30 @@
+name: stylist_consult
+description: StyleSync – live hairstyle overlay consultation app.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  camera: ^0.10.5+9
+  shared_preferences: ^2.2.2
+  provider: ^6.1.2
+  gal: ^2.3.0
+  permission_handler: ^11.3.0
+  path_provider: ^2.1.2
+  path: ^1.8.3
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/overlays/

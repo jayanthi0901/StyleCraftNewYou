@@ -1,0 +1,80 @@
+[
+{
+    "id": "bob",
+    "name": "Textured_bob",
+    "category": "Short",
+    "asset": "assets/overlays/textured_bob.png",
+    "thumbnailUrl": "assets/thumbnails/textured_bob.png",
+    "anchorX": 0.5,
+    "anchorY": 0.18,
+    "scaleRatio": 0.88,
+    "tags": ["trending", "bold"]
+  },
+  {
+    "id": "fringes",
+    "name": "Short fringes",
+    "category": "Short",
+    "asset": "assets/overlays/fringes_hair_1024.png",
+    "thumbnailUrl": "assets/thumbnails/fringes_hair_1024.png",
+    "anchorX": 0.5,
+    "anchorY": 0.18,
+    "scaleRatio": 0.88,
+    "tags": ["trending", "bold"]
+  },
+  {
+    "id": "tinkerbell",
+    "name": "Tinker bells",
+    "category": "Short",
+    "asset": "assets/overlays/Tinkerbell_hair_1024.png",
+    "thumbnailUrl": "assets/thumbnails/Tinkerbell_hair_1024.png",
+    "anchorX": 0.5,
+    "anchorY": 0.18,
+    "scaleRatio": 0.88,
+    "tags": ["trending", "bold"]
+  },
+
+  {
+    "id": "Rightside_cover",
+    "name": "Soft Layers",
+    "category": "Medium",
+    "asset": "assets/overlays/Rightside_cover_hair_1024.png",
+    "thumbnailUrl": "assets/thumbnails/Rightside_cover_hair_1024.png",
+    "anchorX": 0.5,
+    "anchorY": 0.16,
+    "scaleRatio": 0.92,
+    "tags": ["long","celebrity"]
+  },
+  {
+    "id": "short_hair_ear",
+    "name": "Pixie Cut",
+    "category": "Short",
+    "asset": "assets/overlays/short_hair_ear_hair_1024.png",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=300&q=80",
+    "anchorX": 0.5,
+    "anchorY": 0.20,
+    "scaleRatio": 0.75,
+    "tags": ["bold", "trending","classy"]
+  },
+  {
+    "id": "long_straight",
+    "name": "Beach Waves",
+    "category": "Long",
+    "asset": "assets/overlays/long_straight_hair_1024.png",
+    "thumbnailUrl": "assets/thumbnails/long_straight_hair_1024.png",
+    "anchorX": 0.5,
+    "anchorY": 0.14,
+    "scaleRatio": 0.95,
+    "tags": ["formal", "trending"]
+  },
+  {
+    "id": "shoulder_fringes",
+    "name": "Sleek Bun",
+    "category": "Updo",
+    "asset": "assets/overlays/shoulder_fringes_hair_1024",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?w=300&q=80",
+    "anchorX": 0.5,
+    "anchorY": 0.12,
+    "scaleRatio": 0.72,
+    "tags": ["casual", "elegant"]
+  }
+]

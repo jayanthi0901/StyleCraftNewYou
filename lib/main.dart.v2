@@ -1,0 +1,69 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+
+import 'providers/camera_provider.dart';
+import 'providers/face_tracking_provider.dart';
+import 'providers/style_provider.dart';
+import 'services/capture_service.dart';
+import 'screens/camera_overlay_screen.dart';
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Bootstrap
+// ──────────────────────────────────────────────────────────────────────────────
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Lock to portrait for consistent overlay anchoring (Phase-1)
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+    statusBarIconBrightness: Brightness.light,
+  ));
+
+  // Preload style registry & saved captures before first frame
+  final styleProvider = StyleProvider();
+  final captureService = CaptureService();
+
+  await Future.wait([
+    styleProvider.load(),
+    captureService.loadSavedCaptures(),
+  ]);
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => CameraProvider()),
+        ChangeNotifierProvider(create: (_) => FaceTrackingProvider()),
+        ChangeNotifierProvider.value(value: styleProvider),
+        ChangeNotifierProvider.value(value: captureService),
+      ],
+      child: const StyleSnapApp(),
+    ),
+  );
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// App shell
+// ──────────────────────────────────────────────────────────────────────────────
+class StyleSnapApp extends StatelessWidget {
+  const StyleSnapApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'StyleSnap',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        useMaterial3: true,
+        scaffoldBackgroundColor: Colors.black,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF2563EB),
+          brightness: Brightness.dark,
+        ),
+      ),
+      home: const CameraOverlayScreen(),
+    );
+  }
+}

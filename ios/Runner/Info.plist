@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Info.plist  –  iOS permission descriptions for StyleSync
+  Apple requires a human-readable explanation for every permission used.
+-->
+<plist version="1.0">
+<dict>
+    <!-- App name -->
+    <key>CFBundleDisplayName</key>
+    <string>StyleSync</string>
+
+    <!-- Camera permission explanation shown to the user by iOS -->
+    <key>NSCameraUsageDescription</key>
+    <string>StyleSync uses your camera to show a live preview with hairstyle overlays during your consultation.</string>
+
+    <!-- Photo library permission (saving captured previews) -->
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>StyleSync saves your hairstyle preview to your photo library so you can review it later.</string>
+
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>StyleSync accesses your photo library to display and manage captured consultation previews.</string>
+
+    <!-- Required Flutter keys -->
+    <key>CFBundleDevelopmentRegion</key>
+    <string>$(DEVELOPMENT_LANGUAGE)</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>stylist_consult</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>$(FLUTTER_BUILD_NAME)</string>
+    <key>CFBundleSignature</key>
+    <string>????</string>
+    <key>CFBundleVersion</key>
+    <string>$(FLUTTER_BUILD_NUMBER)</string>
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
+    <key>UILaunchStoryboardName</key>
+    <string>LaunchScreen</string>
+    <key>UIMainStoryboardFile</key>
+    <string>Main</string>
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+    </array>
+</dict>
+</plist>

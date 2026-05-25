@@ -1,0 +1,84 @@
+import 'dart:convert';
+import 'package:flutter/services.dart';
+
+class HairStyle {
+  final String id;
+  final String name;
+  final String category;
+  final String assetPath;       // overlay PNG with transparent bg
+  final String thumbnailAsset;  // local thumbnail jpg for the picker
+  final double anchorX;
+  final double anchorY;
+  final double scaleRatio;
+  final List<String> tags;
+
+  const HairStyle({
+    required this.id,
+    required this.name,
+    required this.category,
+    required this.assetPath,
+    required this.thumbnailAsset,
+    required this.anchorX,
+    required this.anchorY,
+    required this.scaleRatio,
+    required this.tags,
+  });
+
+  factory HairStyle.fromJson(Map<String, dynamic> json) {
+    final id = json['id'] as String? ?? 'unknown';
+    return HairStyle(
+      id: id,
+      name: json['name'] as String? ?? id,
+      category: json['category'] as String? ?? 'General',
+      assetPath: json['asset'] as String? ?? 'assets/overlays/$id.png',
+      // 'thumbnail' was added in a later version of styles.json —
+      // fall back gracefully if running against an old cached JSON.
+      thumbnailAsset: json['thumbnail'] as String? ?? 'assets/thumbnails/$id.jpg',
+      anchorX: (json['anchorX'] as num?)?.toDouble() ?? 0.5,
+      anchorY: (json['anchorY'] as num?)?.toDouble() ?? 0.18,
+      scaleRatio: (json['scaleRatio'] as num?)?.toDouble() ?? 0.88,
+      tags: json['tags'] != null ? List<String>.from(json['tags'] as List) : [],
+    );
+  }
+
+  static Future<List<HairStyle>> loadAll() async {
+    final raw = await rootBundle.loadString('assets/styles.json');
+    final list = jsonDecode(raw) as List<dynamic>;
+    return list.map((e) => HairStyle.fromJson(e as Map<String, dynamic>)).toList();
+  }
+}
+
+class HairOverlayState {
+  final HairStyle style;
+  final Offset dragOffset;
+  final double zoomMultiplier;
+
+  // Cached screen-space values set during layout — used by CaptureService
+  // to know where the overlay sits in pixel coordinates.
+  double previewWidth = 0;
+  double previewHeight = 0;
+
+  HairOverlayState({
+    required this.style,
+    this.dragOffset = Offset.zero,
+    this.zoomMultiplier = 1.0,
+  });
+
+  HairOverlayState copyWith({Offset? dragOffset, double? zoomMultiplier}) {
+    return HairOverlayState(
+      style: style,
+      dragOffset: dragOffset ?? this.dragOffset,
+      zoomMultiplier: zoomMultiplier ?? this.zoomMultiplier,
+    )
+      ..previewWidth = previewWidth
+      ..previewHeight = previewHeight;
+  }
+
+  HairOverlayState reset() => HairOverlayState(style: style);
+
+  // Computed overlay rect in screen pixels
+  double get overlayW => previewWidth * style.scaleRatio * zoomMultiplier;
+  double get overlayH => overlayW;
+  double get left => previewWidth * style.anchorX - overlayW / 2 + dragOffset.dx;
+  double get top  => previewHeight * style.anchorY + dragOffset.dy;
+}
